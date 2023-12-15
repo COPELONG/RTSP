@@ -1,0 +1,15 @@
+ *需要注意的工作
+（1）从文件提取pcm数据
+ffmpeg -i buweishui.mp3 -ar 48000 -ac 2 -f s16le 48000_2_s16le.pcm
+（2）从文件提取yuv数据
+ffmpeg -i 720x480_25fps.mp4 -an -c:v rawvideo -pix_fmt yuv420p 720x480_25fps_420p.yuv
+
+将他们都放到
+build-rtmp_publish-Desktop_Qt_5_10_1_MSVC2015_32bit-Debug
+目录下面供读取。
+
+main.cpp:19line #define RTSP_URL "rtsp://192.168.0.148/live/livestream" 改为自己的服务器地址
+
+流媒体服务器可以使用ZLMediaKit
+
+拉流播放  ffplay -i rtsp://192.168.0.148/live/livestream
